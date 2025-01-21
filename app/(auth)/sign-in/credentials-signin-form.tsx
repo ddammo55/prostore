@@ -43,7 +43,6 @@ const CredentialsSigninForm = () => {
                         required
                         type='email'
                         defaultValue={signInDefaultValues.email}
-                        placeholder='email'
                     />
                 </div>
                 <div>
@@ -54,7 +53,6 @@ const CredentialsSigninForm = () => {
                         required
                         type='password'
                         defaultValue={signInDefaultValues.password}
-                        placeholder='password'
                     />
                 </div>
 
