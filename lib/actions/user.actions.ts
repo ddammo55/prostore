@@ -30,6 +30,6 @@ export async function signInWithCredentials(
   }
 
   // 사용자 로그아웃
-export async function signOutUser() {
+  export async function signOutUser() {
     await signOut();
   }
