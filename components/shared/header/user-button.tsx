@@ -16,7 +16,7 @@ const UserButton = async () => {
     const session = await auth();
     if (!session)
         return (
-            <Link href='/api/auth/signin'>
+            <Link href='/sign-in'>
                 <Button>
                     <UserIcon/>Sign In
                 </Button>
