@@ -13,3 +13,11 @@ export const signInDefaultValues = {
   email: '',
   password: '',
 };
+
+// 가입 양식의 기본값
+export const signUpDefaultValues = {
+  name: 'Steve Smith',
+  email: 'steve@example.com',
+  password: 'password',
+  confirmPassword: 'password',
+};
