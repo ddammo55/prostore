@@ -42,3 +42,32 @@ export const signUpFormSchema = z
     message: '비밀번호가 일치하지 않습니다',
     path: ['confirmPassword'],
   })
+
+
+// 항목스키마
+export const cartItemSchema = z.object({
+  productId : z.string().min(1, 'productId_상품은 필수 입력사항입니다.'),
+  name: z.string().min(1, 'name_이름을은 필수 입력사항입니다.'),
+  slug: z.string().min(1, 'slug_슬러그는 필수 입력사항입니다.'),
+  qty: z.number().int().nonnegative('수량은 음수가아닌 양수이어야합니다.'),
+  image: z.string().min(1, '이미지가 필요합니다.'),
+  price: z
+  .number()
+  .refine(
+    (value) => /^\d+(\.\d{2})?$/.test(Number(value).toFixed(2)),
+    '가격은 소수점 이하 두 자리까지 정확히 표시해야 합니다. (e.g., 49.99)'
+  ),
+})
+
+
+// 카트 스키마
+export const insertCartSchema = z.object({
+  items: z.array(cartItemSchema),
+  itemsPrice: currency,
+  totalPrice: currency,
+  shippingPrice: currency,
+  taxPrice: currency,
+  sessionCartId: z.string().min(1, 'Session cart id is required'),
+  userId: z.string().optional().nullable(),
+});
+

@@ -4,6 +4,7 @@ import { prisma } from '@/db/prisma';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compareSync } from 'bcrypt-ts-edge';
 import type { NextAuthConfig } from 'next-auth';
+import { NextResponse } from 'next/server';
 
 export const config = {
   pages: {
@@ -95,6 +96,32 @@ export const config = {
       }
  
       return token;
+    },
+
+    authorized({ request, auth }: any) {
+      // 카트 쿠키 확인
+      if (!request.cookies.get('sessionCartId')) {
+      // 카트 쿠키 생성
+        const sessionCartId = crypto.randomUUID(); 
+     
+        // 요청 헤더 복제
+        const newRequestHeaders = new Headers(request.headers); 
+     
+       // 새 응답을 생성하고 새 헤더를 추가합니다
+        const response = NextResponse.next({
+          request: {
+            headers: newRequestHeaders,
+          },
+        });
+     
+        // 응답 쿠키에서 새로 생성된 세션CartId 설정
+        response.cookies.set('sessionCartId', sessionCartId);
+     
+       // 세션CartId 세트로 응답 반환
+        return response;
+      } else {
+        return true;
+      }
     },
 
 
