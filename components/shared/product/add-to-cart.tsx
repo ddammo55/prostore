@@ -6,7 +6,7 @@ import { Plus, Minus, Loader } from 'lucide-react';
 import { Cart, CartItem } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { ToastAction } from '@/components/ui/toast';
-import { addItemToCart, removeItemFromCart } from '@/lib/actions/cart.action';
+import { addItemToCart, removeItemFromCart } from '@/lib/actions/cart.actions';
 import { useTransition } from 'react';
 
  
